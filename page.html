@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <link rel="stylesheet" href="https://ssl.gstatic.com/docs/script/css/add-ons1.css">
+    <style>
+       body{
+          padding: 20px;
+       }
+    </style>
+  </head>
+  <body>
+    <div><h1>Test Generator</h1></div>
+    <form id="testForm" onSubmit="handleFormSubmit(this)">
+      <div id="output">
+         <input type="submit" class="create" value="Create my exam">
+      </div>
+    </form>
+    
+    <script>
+       
+       function handleFormSubmit(){
+       
+       event.preventDefault();
+       
+       google.script.run
+       .withSuccessHandler( addLink )
+       .withFailureHandler( showError )
+       .lookForm();
+       
+       }
+       
+       function addLink( string ){
+       
+       var div = document.getElementById('output');
+       div.innerHTML = 'Your exam is ready<br><br><br>'
+       + '<a href="' + string + '"target="_blank" onclick="window.top.close();">Go to my exam</a<br><br>';
+       
+       }
+       function showError( error ){
+       
+       console.log( error );
+       }
+       
+
+    </script>
+  </body>
+</html>
+
